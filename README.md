@@ -1,4 +1,4 @@
-General input format:
+General input format:<br/>
 expression						 ::=	dateQuery	|	priceQuery	|	scoreQuery	|	termQuery	
 query											 ::=	expression	(whitespace	expression)?
 modeChange ::=	'output=full'	|	'output=brief'
