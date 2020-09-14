@@ -1,0 +1,16 @@
+#!/bin/sh
+
+mv pterms.txt pterms.bak && sort pterms.bak | uniq -u > ptermsSorted.txt
+mv rterms.txt rterms.bak && sort rterms.bak | uniq -u > rtermsSorted.txt
+mv scores.txt scores.bak && sort scores.bak | uniq -u > scoresSorted.txt
+
+chmod 755 break.pl
+./break.pl < reviews.txt > reviewsToLoad.txt
+./break.pl < ptermsSorted.txt > ptermsToLoad.txt
+./break.pl < rtermsSorted.txt > rtermsToLoad.txt
+./break.pl < scoresSorted.txt > scoresToLoad.txt
+
+cat reviewsToLoad.txt | db_load -c duplicates=1 -T -t hash rw.idx
+cat ptermsToLoad.txt | db_load -c duplicates=1 -T -t btree pt.idx
+cat rtermsToLoad.txt | db_load -c duplicates=1 -T -t btree rt.idx
+cat scoresToLoad.txt | db_load -c duplicates=1 -T -t btree sc.idx
