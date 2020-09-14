@@ -1,6 +1,3 @@
-# DataSearch
-Information retrieval system that utilizes the Berkeley DB library for operations
-
 General input format:
 expression						 ::=	dateQuery	|	priceQuery	|	scoreQuery	|	termQuery	
 query											 ::=	expression	(whitespace	expression)?
